@@ -35,8 +35,8 @@ namespace Client
                 cfg.ClientId = "1";
                 cfg.ClientSecret = "1Secret";
                 cfg.CallbackPath = "/outh/callback";
-                cfg.AuthorizationEndpoint = "http://localhost:49191/outh/authorize";
-                cfg.TokenEndpoint = "http://localhost:49191/auth/token";
+                cfg.AuthorizationEndpoint = "http://localhost:49191/oauth/authorize";
+                cfg.TokenEndpoint = "http://localhost:49191/oauth/token";
                 cfg.SaveTokens = true;
             });
             services.AddControllersWithViews();

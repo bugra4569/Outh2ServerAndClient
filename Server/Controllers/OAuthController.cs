@@ -10,7 +10,7 @@ using Server.Helpers;
 
 namespace Server.Controllers
 {
-    public class OuthController : Controller
+    public class OauthController : Controller
     {
         [HttpGet]
         public IActionResult Authorize(string response_type, // authorization flow type 
@@ -40,7 +40,7 @@ namespace Server.Controllers
 
             return Redirect($"{redirectUri}{query.ToString()}");
         }
-        public IActionResult Token(string grant_type, // flow of access_token request
+        public async Task<IActionResult> Token(string grant_type, // flow of access_token request
             string code, // confirmation of the authentication process
             string redirect_uri,
             string client_id,
@@ -57,7 +57,8 @@ namespace Server.Controllers
             };
             var responseJson = JsonConvert.SerializeObject(responseObject);
             var responseByte = Encoding.UTF8.GetBytes(responseJson);
-            Response.Body.Write(responseByte, 0, responseByte.Length);
+            await Response.Body.WriteAsync(responseByte, 0, responseByte.Length);
+            
             return Redirect(redirect_uri);
         }
 
